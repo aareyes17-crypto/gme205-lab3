@@ -29,3 +29,20 @@
 - The hierarchical design allows new spatial types to be added easily with minimal code by inheriting from the SpatialObject. Since shared behavior is reused, redundancy is reduced and consistency is ensured, making it easier to maintain. 
 
 # Reflection — Challenge Exercises
+# Challenge 1 — from_dict() (Data → Object Boundary)
+- Why should from_dict() delegate validation to the constructor instead of validating manually inside the method?
+- The from_dict() should be delegating validation to the constructor because it ensures a Single Source of truth for validation logic. If the coordinate rules change, you will only need to update the constructor, and from_dict() will automatically follow the rules without needing to manually change the codes.
+
+# Challenge 2 — as_dict() (Structured Output)
+- Why is as_dict() implemented inside the object rather than in demo.py or run_lab3.py?
+- The as_dict() implemented inside the object rather than in demo.py or run_lab3.py because this follows the principle of Encapsulation, where an object is responsible for managing its own data and state. Implementing it internally means that any script that uses the class can consistently export the data without having to rewrite the formatting.
+
+- Why must as_dict() return only primitive data types and not Shapely geometry objects?
+- The as_dict() must return only primitive data types and not Shapely geometry objects because the primitive types like the strings, numbers, and tuples ensures the data is "JSON-ready". 
+
+# Challenge 3 — intersects() in SpatialObject (Inheritance)
+- Why does intersects() belong in the base class instead of being duplicated in Point and Parcel?
+- The intersects() belongs in the base class instead of being duplicated in Point and Parcel because it follows a Don't Repeat Yourself principle. Since the logic for intersection is identical for all the spatial objects using Shapely, defining it once in the parent class reduces the process, because there is no code duplication. 
+
+- If you add a new spatial subclass tomorrow (e.g., Building), what changes are required for it to support intersects() — and why?
+- If you add a new spatial subclass tomorrow (e.g., Building), there will be no changes required for the intersects() method. This is because the Building class simply needs to inherit from the SpatialObject. Because of Inheritance, the new class automatically gains all behaviors defined in the base class.
