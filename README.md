@@ -27,3 +27,5 @@
 
 - How does this hierarchical design make your spatial system more scalable compared to defining each class independently?
 - The hierarchical design allows new spatial types to be added easily with minimal code by inheriting from the SpatialObject. Since shared behavior is reused, redundancy is reduced and consistency is ensured, making it easier to maintain. 
+
+# Reflection — Challenge Exercises
